@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <title>Order Invoice</title>
+    <style type="text/css">
+        p,
+        h1,
+        h2,
+        h4,
+        h5 {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* .table td {
+            border-left: 0;
+            border-bottom: 0;
+            border-top: 0;
+            padding: 10px 10px 10px 10px;
+        } */
+        .table tbody td:last-child {
+            border-right: 0;
+        }
+
+        .table thead tr th:last-child {
+            border-right: 0;
+        }
+
+        @media (max-width:- 991px) {
+            .template_sec {
+                width: 100% !important;
+            }
+        }
+
+        .invoice_top_bg::before {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background-color: #f4f7fc;
+            -webkit-clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+            clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body
+    style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #f4f7fc; font-family: 'Nunito', sans-serif;">
+    <section class="invoice_top_bg" style="height: 400px;width: 100%;background-image: linear-gradient(to right, #fca300, #fa1d72); position: relative;    padding-top: 5%;    z-index: 9;
+        ">
+        <section class="invoice_sec" style="width: 60%;
+    margin: 0 auto 0 auto;
+    background-color: #fff;    border-radius: 4px;
+    padding: 20px 50px 20px 50px;    z-index: 99999999;
+    overflow: visible;">
+            <!-- Top_Logo_Box -->
+            <div class="top_box" style="text-align: center;">
+                <div class="logo" style="padding: 0 0 0 0;">
+                    <img src="../../../../public/logo.png" alt="logo" >
+                </div>
+                <div class="top_thanks_box" style="border-top: 2px solid #CBCBCB;
+            margin: 15px auto;
+            border-bottom: 2px solid #CBCBCB;
+            padding: 15px 0;">
+                    <h2 style="
+                margin: 0px 0 5px 0;
+                padding: 0;
+                font-size: 28px;
+                color: #F87128;font-weight: 600;
+            ">Thank you for your order!</h2>
+                    <p style="    color: #434343;
+                margin: 0;
+                padding: 0;
+                font-size: 16px;
+                font-weight: 400;">Order Id : #<%= order_id %></p>
+                </div>
+            </div>
+            <!-- Oder_Details_Customer_Info -->
+            <div class="oder_details_info" style="    display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin: 0;
+        padding: 15px 30px;">
+                <div class="order_details">
+                    <div class="custom_form_group" style="margin: 5px 0 10px 0;">
+                        <label for="" style="     font-size: 14px;
+                    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    margin-bottom: 5px;    display: block;
+    color: #333333;">Ordered Date :</label>
+                        <p class="value" style="    color: #888888;
+                    font-weight: 500;
+                    letter-spacing: 0;
+                    font-size: 15px;"><%= order_date %></p>
+                    </div>
+                    <div class="custom_form_group" style="margin: 5px 0 10px 0;">
+                        <label for="" style="        font-size: 14px;
+                    font-weight: 600;
+                    letter-spacing: 0;
+                    text-transform: capitalize;
+                    margin-bottom: 5px;    display: block;
+                    color: #333333;">Name :</label>
+                        <p class="value" style="    color: #888888;
+                    font-weight: 500;
+                    letter-spacing: 0;
+                    font-size: 15px;"><%= customer_name %></p>
+                    </div>
+                    <div class="custom_form_group" style="margin: 5px 0 10px 0;">
+                        <label for="" style="       font-size: 14px;
+                    font-weight: 600;
+                    letter-spacing: 0;
+                    text-transform: capitalize;
+                    margin-bottom: 5px;    display: block;
+                    color: #333333;">Shipping address :</label>
+                        <p class="value" style="    color: #888888;
+                    font-weight: 600;
+                    letter-spacing: 0;
+                    font-size: 15px;" style="    color: #888888;
+                    font-weight: 500;
+                    letter-spacing: 0;
+                    font-size: 15px;    line-height: 22px;"><%= address.line_1 %></p>
+                        <p class="value" style="    color: #888888;
+                    font-weight: 500;
+                    letter-spacing: 0;
+                    font-size: 14px;    line-height: 22px;"><%= address.line_2 %></p>
+                        <p class="value" style="    color: #888888;
+                    font-weight: 500;
+                    letter-spacing: 0;
+                    font-size: 15px;    line-height: 22px;"><%= address.landmark %>
+                        </p>
+                        <p class="value" style="    color: #888888;
+                    font-weight: 500;
+                    letter-spacing: 0;
+                    font-size: 15px;    line-height: 22px;"><%= address.state %>, <%= address.country %>, <%= address.postal_code %></p>
+                    </div>
+                </div>
+                <div class="customer_info">
+                    <h4 style="font-size: 14px;
+                font-weight: 600;
+                letter-spacing: 0;
+                text-transform: capitalize;
+                margin-bottom: 0px;
+                display: block;
+                color: #333333;">Customer Info :</h4>
+                    <p style="    color: #888888;
+                font-weight: 500;
+                letter-spacing: 0;
+                font-size: 15px;
+                line-height: 22px;"><%= customer_name %></p>
+                    <p style="    color: #888888;
+                font-weight: 500;
+                letter-spacing: 0;
+                font-size: 15px;
+                line-height: 22px;"><%= customer_email %></p>
+                    <p style="    color: #888888;
+                font-weight: 500;
+                letter-spacing: 0;
+                font-size: 15px;
+                line-height: 22px;"><%= customer_phone %></p>
+                </div>
+            </div>
+            <!-- Order Details -->
+            <div style="    background: #F9F9F9;
+        height: 60px;
+        line-height: 60px;
+        padding: 0 15px;    margin: 0 0 20px 0;">
+                <h2 style="    font-size: 20px;
+            color: #333333;">Order Details</h2>
+            </div>
+            <!-- INVOICE-TABLE -->
+            <div class="invoice-table table-responsive">
+                <table class="table" style="    border-radius: 0;
+                margin-bottom: 0;
+                overflow: hidden;
+                width: 100%;
+                border-spacing: 0;    border: 1px solid #dee2e6;">
+                    <!-- THEAD -->
+                    <thead>
+                        <tr>
+                            <th style="border-bottom: 1px solid #dee2e6;
+                            border-right: 1px solid #dee2e6;
+                            color: #333333;
+                            text-align: center;
+                            font-weight: 600;
+                            padding: 10px 10px 10px 10px;
+                            font-size: 13px;">S.no</th>
+                            <th style="border-bottom: 1px solid #dee2e6;
+                            border-right: 1px solid #dee2e6;
+                            color: #333333;
+                            text-align: left;
+                            font-weight: 600;
+                            padding: 10px 10px 10px 10px;
+                            font-size: 13px;">Description</th>
+                            <th style="border-bottom: 1px solid #dee2e6;
+                            border-right: 1px solid #dee2e6;
+                            color: #333333;
+                            text-align: center;
+                            font-weight: 600;
+                            padding: 10px 10px 10px 10px;
+                            font-size: 13px;">Quantity</th>
+                            <th style="border-bottom: 1px solid #dee2e6;
+                            border-right: 1px solid #dee2e6;
+                            color: #333333;
+                            text-align: center;
+                            font-weight: 600;
+                            padding: 10px 10px 10px 10px;
+                            font-size: 13px;">Unit Price</th>
+                            <th style="border-bottom: 1px solid #dee2e6;
+                            color: #333333;
+                            text-align: center;
+                            font-weight: 600;
+                            padding: 10px 10px 10px 10px;
+                            font-size: 13px;">Item Total</th>
+                        </tr>
+                    </thead>
+                    <!-- TBODY -->
+                    <tbody>
+                    <% supplies_order_items.forEach((item,index)=>{%>
+                        
+                        <tr class="product-row">
+                            <td style="  border-left: 0;
+            border-bottom: 0;
+            border-top: 0;
+            padding: 10px 10px 10px 10px;    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #888888;
+    border-right: 1px solid #dee2e6;"><%= index+1 %></td>
+                            <td style="  border-left: 0;
+            border-bottom: 0;
+            border-top: 0;
+            padding: 10px 10px 10px 10px;max-width: 225px;min-width: 225px;    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+    color: #888888;
+    border-right: 1px solid #dee2e6;"><%= item.supply.name %></td>
+                            <td style="  border-left: 0;
+            border-bottom: 0;
+            border-top: 0;
+            padding: 10px 10px 10px 10px;    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #888888;
+    border-right: 1px solid #dee2e6;"><%= item.quantity %></td>
+                            <td style="  border-left: 0;
+            border-bottom: 0;
+            border-top: 0;
+            padding: 10px 10px 10px 10px;    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #888888;
+    border-right: 1px solid #dee2e6;">AUD <%= item.supply_variant.selling_price %></td>
+                            <td style="  border-left: 0;
+            border-bottom: 0;
+            border-top: 0;
+            padding: 10px 10px 10px 10px;    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #888888;">AUD <%= item.price %></td>
+                        </tr>
+                        <%});%>
+                    </tbody>
+                </table>
+                <div style="border: 1px solid #dee2e6;
+            border-top: 0;">
+                    <div style="    display: flex;
+                align-items: center;
+                justify-content: space-between; padding: 8px 25px 8px 85px;    border-bottom: 1px solid #dee2e6;">
+                        <h4 style="
+                    font-size: 14px;
+                    color: #888888;
+                    font-weight: 700;
+                    letter-spacing: 0.2px;text-transform: uppercase;
+                ">Subtotal</h4>
+                        <p style="    color: #333333;
+                    font-size: 15px;
+                    font-weight: 600;    width: 150px;
+    text-align: right;">AUD <%= sub_total %></p>
+                    </div>
+                    
+                    <div style="    display: flex;
+                align-items: center;
+                justify-content: space-between; padding: 8px 25px 8px 85px;    border-bottom: 1px solid #dee2e6;">
+                        <h4 style="
+                    font-size: 14px;
+                    color: #888888;
+                    font-weight: 700;
+                    letter-spacing: 0.2px;text-transform: uppercase;
+                ">Discount</h4>
+                        <p style="    color: #333333;
+                    font-size: 15px;
+                    font-weight: 600;    width: 150px;
+    text-align: right;">AUD <%= coupon_discount %></p>
+                    </div>
+                    <div style="    display: flex;
+                align-items: center;
+                justify-content: space-between; padding: 8px 25px 8px 85px;    border-bottom: 1px solid #dee2e6;">
+                        <h4 style="
+                    font-size: 14px;
+                    color: #888888;
+                    font-weight: 700;
+                    letter-spacing: 0.2px;text-transform: uppercase;
+                ">Freight Charges</h4>
+                        <p style="    color: #333333;
+                    font-size: 15px;
+                    font-weight: 600;    width: 150px;
+    text-align: right;">AUD <%= delivery_charge %></p>
+                    </div>
+                    <div style="    display: flex;
+                align-items: center;
+                justify-content: space-between; padding: 8px 25px 8px 85px;    border-bottom: 1px solid #dee2e6;">
+                        <h4 style="
+                    font-size: 14px;
+                    color: #888888;
+                    font-weight: 700;
+                    letter-spacing: 0.2px;text-transform: uppercase;
+                ">Tax</h4>
+                        <p style="    color: #333333;
+                    font-size: 15px;
+                    font-weight: 600;    width: 150px;
+    text-align: right;">AUD <%= tax_amount %></p>
+                    </div>
+                    <div style="    display: flex;
+                align-items: center;
+                justify-content: space-between; padding: 8px 25px 8px 85px">
+                        <h4 style="
+                    font-size: 16px;
+                    color: #000;
+                    font-weight: 700;
+                    letter-spacing: 0.2px;text-transform: uppercase;
+                ">Total AUD</h4>
+                        <p style="
+                    color: #F87128;
+                    font-size: 16px;
+                    font-weight: 700;    width: 150px;
+    text-align: right;
+                ">AUD <%= total_amount %></p>
+                    </div>
+                </div>
+            </div>
+            <!-- Vendor Details Payment-tye -->
+            <div class="vendor_payment_flex" style="display: flex;
+       align-items: flex-start;
+       justify-content: space-between;
+       margin: 25px 0 25px 0;
+       padding: 15px 30px;">
+                <div>
+                    <h4 style="margin: 0 0 5px 0;
+                ">Vendor Details</h4>
+                    <p style="    color: #888888;
+                font-weight: 500;
+                letter-spacing: 0;
+                font-size: 16px;
+                line-height: 22px;    margin-bottom: 4px;"><%= supplier.business_name %></p>
+                    <p style="    color: #888888;
+                font-weight: 500;
+                letter-spacing: 0;
+                font-size: 16px;
+                line-height: 22px;    margin-bottom: 4px;"><%= supplier.phone %></p>
+                    <p style="    color: #888888;
+                font-weight: 500;
+                letter-spacing: 0;
+                font-size: 16px;
+                line-height: 22px;    margin-bottom: 4px;"><%= supplier.email %></p>
+                    <p style="    color: #888888;
+                font-weight: 500;
+                letter-spacing: 0;
+                font-size: 16px;
+                line-height: 22px;    margin-bottom: 4px;"><%= supplier.address.country %></p>
+                    
+                </div>
+                <div>
+                    <h4 style="margin: 0 0 5px 0;
+                ">Payment Type:</h4>
+                    <h5 style="    color: #F87128;
+                font-weight: 500;
+                letter-spacing: 0;
+                font-size: 15px;
+                line-height: 22px;"><%= payment_mode %></h5>
+                    
+                </div>
+            </div>
+            <!-- Thank you! -->
+            <div style="    text-align: center;
+        border-top: 1px solid #ccc;
+        padding: 25px 0 0 0;">
+                <h2 style="margin: 0px 0 0px 0;
+            padding: 0;
+            font-size: 30px;
+            color: #F87128;font-weight: 600;
+">Thank you!</h2>
+            </div>
+        </section>
+        <!-- Queries -->
+        <div style="text-align: center;
+    padding: 40px 0 20px 0;">
+            <p style="    color: #888888;
+        font-weight: 500;
+        letter-spacing: 0;
+        font-size: 22px;
+        line-height: 22px;
+        margin-bottom: 10px;">If you have Queries feel free to contact us</p>
+            <a href="" style="    color: #EF6A30;
+        font-size: 20px;
+        font-weight: 600;
+        text-decoration: none;">support@dentalinterface360.com</a>
+        </div>
+    </section>
+</body>
+
+</html>

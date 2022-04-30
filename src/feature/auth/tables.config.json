@@ -1,0 +1,54 @@
+[
+  {
+    "tableName": "master_employee_awards",
+    "fields": ["name", "short_info", "image","pay_per_hour"]
+  },
+  {
+    "tableName": "master_employee_departments",
+    "fields": ["name", "short_info", "color"]
+  },
+  {
+    "tableName": "master_employee_leave_types",
+    "fields": ["name", "short_info", "color"]
+  },
+  {
+    "tableName": "master_employee_qualifications",
+    "fields": ["name", "short_info", "image"]
+  },
+  {
+    "tableName": "master_employee_roles",
+    "fields": ["name", "short_info", "image", "color"]
+  },
+  {
+    "tableName": "master_employee_types",
+    "fields": ["name", "short_info", "image"]
+  },
+  {
+    "tableName": "master_expense_types",
+    "fields": ["name", "short_info", "color"]
+  },
+  {
+    "tableName": "master_induction_form_categories",
+    "fields": ["name", "short_info", "color"]
+  },
+  {
+    "tableName": "master_preformatted_letters_categories",
+    "fields": ["name", "short_info", "color"]
+  },
+  {
+    "tableName": "master_task_levels",
+    "fields": ["name", "short_info", "color"]
+  },
+  {
+    "tableName": "master_training_categories",
+    "fields": ["name", "short_info", "color"]
+  },
+  {
+    "tableName": "master_training_grades",
+    "fields": ["name", "short_info", "start_percentage", "end_percentage"]
+  },
+  {
+    "tableName": "user_custom_roles",
+    "fields": ["name", "description"]
+  }
+]
